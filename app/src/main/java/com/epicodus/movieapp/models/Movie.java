@@ -1,16 +1,22 @@
 package com.epicodus.movieapp.models;
 
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 
 /**
  * Created by Guest on 7/6/16.
  */
+
+@Parcel
 public class Movie {
-    private String mTitle;
-    private String mSynopsis;
-    private String mPosterUrl;
-    private double mRating;
-    private String mReleaseDate;
+    String mTitle;
+    String mSynopsis;
+    String mPosterUrl;
+    double mRating;
+    String mReleaseDate;
+
+    public Movie() {}
 
     public Movie(String title, String synopsis, String posterUrl, double rating, String releaseDate) {
         this.mTitle = title;
