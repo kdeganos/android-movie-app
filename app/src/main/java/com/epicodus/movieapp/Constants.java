@@ -9,4 +9,7 @@ public class Constants {
     public static final String BASE_URL = "https://api.themoviedb.org/3/search/movie";
     public static final String API_QUERY_PARAMETER = "api_key";
     public static final String SEARCH_QUERY_PARAMETER = "query";
+
+    public static final String BASE_CREDITS_URL = "https://api.themoviedb.org/3/movie/";
+
 }

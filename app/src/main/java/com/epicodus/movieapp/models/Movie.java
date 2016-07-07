@@ -15,15 +15,19 @@ public class Movie {
     String mPosterUrl;
     double mRating;
     String mReleaseDate;
+    String mDirector;
+    ArrayList<String> mActors;
+    String mMovieId;
 
     public Movie() {}
 
-    public Movie(String title, String synopsis, String posterUrl, double rating, String releaseDate) {
+    public Movie(String title, String synopsis, String posterUrl, double rating, String releaseDate, String movieId) {
         this.mTitle = title;
         this.mSynopsis = synopsis;
         this.mPosterUrl = posterUrl;
         this.mRating = rating;
         this.mReleaseDate = releaseDate;
+        this.mMovieId = movieId;
     }
 
     public String getTitle() {
@@ -35,7 +39,7 @@ public class Movie {
     }
 
     public String getPosterUrl() {
-        return "http://image.tmdb.org/t/p/w154/" + mPosterUrl;
+        return "http://image.tmdb.org/t/p/w500/" + mPosterUrl;
     }
 
     public double getRating() {
@@ -44,5 +48,25 @@ public class Movie {
 
     public String getReleaseDate() {
         return mReleaseDate;
+    }
+
+    public String getmMovieId() {
+        return mMovieId;
+    }
+
+    public void setDirector(String director) {
+        this.mDirector = director;
+    }
+
+    public String getDirector() {
+        return mDirector;
+    }
+
+    public void setActors(ArrayList<String> actors) {
+        this.mActors = actors;
+    }
+
+    public ArrayList<String> getActors() {
+        return mActors;
     }
 }

@@ -42,6 +42,23 @@ public class MovieService {
         call.enqueue(callback);
     }
 
+    public static void getCredits(String movieId, Callback callback) {
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .build();
+
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.BASE_CREDITS_URL + movieId + "/credits").newBuilder();
+        urlBuilder.addQueryParameter(Constants.API_QUERY_PARAMETER, Constants.MOVIE_API_KEY);
+        String url = urlBuilder.build().toString();
+
+        Request request= new Request.Builder()
+                .url(url)
+                .build();
+
+        Call call = client.newCall(request);
+        call.enqueue(callback);
+    }
+
     public ArrayList<Movie> processResults(Response response) {
         ArrayList<Movie> movies = new ArrayList<>();
 
@@ -58,8 +75,9 @@ public class MovieService {
                     String posterUrl = movieJSON.getString("poster_path");
                     double rating = movieJSON.getDouble("vote_average");
                     String releaseDate = movieJSON.getString("release_date");
+                    String movieId = movieJSON.getString("id");
 
-                    Movie movie = new Movie(title, synopsis, posterUrl, rating, releaseDate);
+                    Movie movie = new Movie(title, synopsis, posterUrl, rating, releaseDate, movieId);
                     movies.add(movie);
                 }
             }
@@ -69,5 +87,43 @@ public class MovieService {
             e.printStackTrace();
         }
         return movies;
+    }
+
+    public Movie processCredits (Response response, Movie movie) {
+        ArrayList<String> actors = new ArrayList<>();
+        String director = "unavailable";
+
+
+        try {
+            String jsonData = response.body().string();
+
+            if (response.isSuccessful()) {
+                JSONObject tmdbJSON = new JSONObject(jsonData);
+                JSONArray castJSON = tmdbJSON.getJSONArray("cast");
+                for (int i = 0; i < castJSON.length(); i++) {
+                    JSONObject movieJSON = castJSON.getJSONObject(i);
+                    String name = movieJSON.getString("name");
+
+                    actors.add(name);
+                }
+
+                JSONArray crewJSON = tmdbJSON.getJSONArray("crew");
+
+                for (int i = 0; i < crewJSON.length(); i++) {
+                    JSONObject movieJSON = castJSON.getJSONObject(i);
+                    if (movieJSON.getString("job").equals("Director")){
+                        director = movieJSON.getString("name");
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        movie.setActors(actors);
+        movie.setDirector(director);
+        return movie;
     }
 }

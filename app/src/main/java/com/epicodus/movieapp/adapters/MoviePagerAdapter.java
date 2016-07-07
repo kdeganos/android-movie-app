@@ -20,7 +20,7 @@ public class MoviePagerAdapter extends FragmentPagerAdapter{
     public MoviePagerAdapter(FragmentManager fm, ArrayList<Movie> movies) {
         super(fm);
         mMovies = movies;
-        Log.d(TAG, "MoviePagerAdapter: " + mMovies);
+
     }
 
     @Override

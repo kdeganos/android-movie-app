@@ -30,7 +30,6 @@ public class MovieDetailActivity extends AppCompatActivity {
 
         mMovies = Parcels.unwrap(getIntent().getParcelableExtra("movies"));
         int startingPosition = Integer.parseInt(getIntent().getStringExtra("position"));
-        Log.d(TAG, "onCreate: " + mMovies);
         adapterViewPager = new MoviePagerAdapter(getSupportFragmentManager(), mMovies);
         mViewPager.setAdapter(adapterViewPager);
         mViewPager.setCurrentItem(startingPosition);
