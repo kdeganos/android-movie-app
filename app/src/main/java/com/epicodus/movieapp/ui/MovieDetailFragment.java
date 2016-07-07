@@ -22,10 +22,14 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class MovieDetailFragment extends Fragment {
+    private static final int MAX_WIDTH = 400;
+    private static final int MAX_HEIGHT = 300;
+
     @Bind(R.id.fragmentPosterImageView) ImageView mImageLabel;
     @Bind(R.id.fragmentTitleTextView) TextView mMovieLabel;
     @Bind(R.id.fragmentSynopsisTextView) TextView mSynopsisLabel;
     @Bind(R.id.fragmentRatingTextView) TextView mRatingLabel;
+    @Bind(R.id.releaseDateTextView) TextView mReleaseDateLabel;
 
     private Movie mMovie;
 
@@ -49,11 +53,12 @@ public class MovieDetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_movie_detail, container, false);
         ButterKnife.bind(this, view);
 
-        Picasso.with(view.getContext()).load(mMovie.getPosterUrl()).into(mImageLabel);
+        Picasso.with(view.getContext()).load(mMovie.getPosterUrl()).resize(MAX_WIDTH, MAX_HEIGHT).centerCrop().into(mImageLabel);
 
         mMovieLabel.setText(mMovie.getTitle());
         mSynopsisLabel.setText(mMovie.getSynopsis());
         mRatingLabel.setText(Double.toString(mMovie.getRating()));
+        mReleaseDateLabel.setText("Released: " + mMovie.getReleaseDate());
 
         return view;
     }

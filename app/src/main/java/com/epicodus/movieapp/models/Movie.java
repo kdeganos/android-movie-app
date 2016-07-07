@@ -35,7 +35,7 @@ public class Movie {
     }
 
     public String getPosterUrl() {
-        return "http://image.tmdb.org/t/p/w154/" + mPosterUrl;
+        return "http://image.tmdb.org/t/p/w500/" + mPosterUrl;
     }
 
     public double getRating() {
