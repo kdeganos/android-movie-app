@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.epicodus.movieapp.Movie;
+import com.epicodus.movieapp.models.Movie;
 import com.epicodus.movieapp.R;
 import com.squareup.picasso.Picasso;
 
@@ -50,7 +50,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         @Bind(R.id.posterImageView) ImageView mPosterImageView;
         @Bind(R.id.movieTitleTextView) TextView mMovieTitleTextView;
         @Bind(R.id.synopsisTextView) TextView mSynopsisTextView;
-        @Bind(R.id.releaseDateTextView) TextView mReleaseDateTextView;
+//        @Bind(R.id.releaseDateTextView) TextView mReleaseDateTextView;
         @Bind(R.id.ratingTextView) TextView mRatingTextView;
 
         private Context mContext;
@@ -62,11 +62,11 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         }
 
         public void bindMovie(Movie movie) {
-            Picasso.with(mContext).load(movie.getPosterUrl()).into(mPosterImageView);
+            Picasso.with(mContext).load(movie.getPosterUrl()).resize(77, 150).into(mPosterImageView);
             mMovieTitleTextView.setText(movie.getTitle());
             mSynopsisTextView.setText(movie.getSynopsis());
-            mReleaseDateTextView.setText("Release Date: " + movie.getReleaseDate());
-            mRatingTextView.setText("Rating: " + String.valueOf(movie.getRating()));
+//            mReleaseDateTextView.setText("Release Date: " + movie.getReleaseDate());
+            mRatingTextView.setText("Release Date: " + movie.getReleaseDate() + "     " + "Rating: " + String.valueOf(movie.getRating()));
         }
     }
 }

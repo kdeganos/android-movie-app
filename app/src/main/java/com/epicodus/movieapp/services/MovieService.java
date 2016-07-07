@@ -1,6 +1,8 @@
-package com.epicodus.movieapp;
+package com.epicodus.movieapp.services;
 
-import android.util.Log;
+import com.epicodus.movieapp.Constants;
+import com.epicodus.movieapp.models.Movie;
+import com.epicodus.movieapp.ui.MovieActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;

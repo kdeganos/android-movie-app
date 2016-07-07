@@ -1,4 +1,4 @@
-package com.epicodus.movieapp;
+package com.epicodus.movieapp.models;
 
 import java.util.ArrayList;
 

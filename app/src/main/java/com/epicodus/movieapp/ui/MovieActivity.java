@@ -1,4 +1,4 @@
-package com.epicodus.movieapp;
+package com.epicodus.movieapp.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.epicodus.movieapp.models.Movie;
+import com.epicodus.movieapp.services.MovieService;
+import com.epicodus.movieapp.R;
 import com.epicodus.movieapp.adapters.MovieListAdapter;
 
 import java.io.IOException;
